@@ -6,6 +6,7 @@ import Button from "@/components/ui/button/Button";
 import { ChevronLeftIcon, EyeCloseIcon, EyeIcon } from "@/icons";
 import Link from "next/link";
 import React, { useState } from "react";
+import * as yup from "yup";
 
 export default function SignInForm() {
   const [showPassword, setShowPassword] = useState(false);

@@ -36,26 +36,6 @@ async function getData(): Promise<Cob[]> {
 
 export default async function DemoPage() {
   const data = await getData()
-  const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>(
-    []
-  )
-  const [rowSelection, setRowSelection] = useState({})
-
-  const table = useReactTable({
-    data,
-    columns,
-    
-    onColumnFiltersChange: setColumnFilters,
-    getCoreRowModel: getCoreRowModel(),
-    getPaginationRowModel: getPaginationRowModel(),
-    getSortedRowModel: getSortedRowModel(),
-    getFilteredRowModel: getFilteredRowModel(),
-    onRowSelectionChange: setRowSelection,
-    state: {
-      columnFilters,
-      rowSelection,
-    },
-  })
 
   return (
     <div className="container mx-auto py-10">

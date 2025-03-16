@@ -63,11 +63,11 @@ export const columns: ColumnDef<Cob>[] = [
     header: ({ table }) => {
       return (
         <Switch
+          className='data-[state=checked]:bg-green-500'
           checked={
-            table.getIsAllPageRowsSelected() ||
-            (table.getIsSomePageRowsSelected() ? false : true)
+            table.getIsAllPageRowsSelected() 
           }
-          onChange={(value) => table.toggleAllPageRowsSelected(!!value)}
+          onCheckedChange={(value) => table.toggleAllPageRowsSelected(!!value)}
           aria-label="Enable all rows"
         />
       )
@@ -76,8 +76,9 @@ export const columns: ColumnDef<Cob>[] = [
       return (
         <div className="flex">
           <Switch
+            className='data-[state=checked]:bg-green-500'
             checked={row.getIsSelected()}
-            onChange={(value) => row.toggleSelected(!!value)}
+            onCheckedChange={(value) => row.toggleSelected(!!value)}
             aria-label="Enable row"
           />
         </div>
