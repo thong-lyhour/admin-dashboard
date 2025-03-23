@@ -9,7 +9,7 @@ import { useRouter } from 'next/navigation'
 import React, { useCallback, useState } from 'react'
 import * as yup from 'yup'
 import { useFormik } from 'formik'
-import { createAuthCookie } from '../../../actions/auth.action'
+import { login } from '@/lib/auth'
 
 export const LoginSchema = yup.object({
   username: yup.string().required('Username is required'),
@@ -28,9 +28,13 @@ export default function LoginForm() {
     },
     onSubmit: async (values: any) => {
       // `values` contains email & password. You can use provider to connect user
+      
+      const isAuth = await log(values);
   
-      await createAuthCookie();
-      router.replace('/')
+      if(isAuth) {
+        router.replace('/')
+      }
+      // await createAuthCookie();
     },
     validationSchema: LoginSchema,
   })
@@ -106,11 +110,7 @@ export default function LoginForm() {
                       onClick={() => setShowPassword(!showPassword)}
                       className="absolute z-30 -translate-y-1/2 cursor-pointer right-4 top-1/2"
                     >
-                      {showPassword ? (
-                        <EyeIcon className="fill-gray-500 dark:fill-gray-400" />
-                      ) : (
-                        <EyeCloseIcon className="fill-gray-500 dark:fill-gray-400" />
-                      )}
+                     
                     </span>
                     {formik.errors.password &&
                     typeof formik.errors.password === 'string' && (
