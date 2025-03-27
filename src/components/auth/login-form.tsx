@@ -29,7 +29,7 @@ export default function LoginForm() {
     onSubmit: async (values: any) => {
       // `values` contains email & password. You can use provider to connect user
       
-      const isAuth = await log(values);
+      const isAuth = await login(values);
   
       if(isAuth) {
         router.replace('/')
